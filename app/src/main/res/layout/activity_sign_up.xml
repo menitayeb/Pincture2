@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip"
+    android:layout_below="@+id/header"
+    android:background="#1C2428">
+
+
+<ScrollView
+    android:layout_marginTop="30dp"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1"
+        >
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Full Name"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/edtFullName" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Username"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/nickname" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Dog name"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/dogname" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Type"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/type" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Birth Year"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/birth_year" />
+
+
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Email"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/edtEmail1" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Country"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:id="@+id/country" />
+
+
+
+
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Password"/>
+
+        <EditText android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:id="@+id/edtPassword" />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:id="@+id/button"
+            android:layout_marginBottom="300dp"
+            android:background="#61C2BA"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp" />
+    </TableLayout>
+
+</ScrollView>
+
+
+</LinearLayout>

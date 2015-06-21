@@ -1,0 +1,15 @@
+<!-- בס"ד -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlTransparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.MixTronixLabs.Take26.Transparent" >
+
+    <WebView
+        android:id="@+id/connectWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

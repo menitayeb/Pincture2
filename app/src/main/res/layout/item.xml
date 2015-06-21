@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv"
+    android:layout_marginBottom="10dp"
+    card_view:border_width="2dp"
+    card_view:border_color="@color/card_color"
+    card_view:cardBackgroundColor="@color/card_color"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="8dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_name"
+            android:layout_toRightOf="@id/profile_image"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white_color"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dog_name"
+            android:layout_toRightOf="@id/profile_image"
+            android:layout_below="@+id/person_name"
+            android:textColor="@color/turquoise"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_stamp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/turquoise"
+            android:textSize="12sp"
+            android:text="2.5.2015"
+            />
+
+        <ImageView
+            android:id="@+id/card_view_image"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="12dp"
+            android:adjustViewBounds="false"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/dog_name"
+            android:src="@drawable/second_image"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/step_icon"
+            android:paddingLeft="16dp"
+            android:paddingTop="15dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_below="@id/card_view_image"
+            android:tint="@color/turquoise"
+            android:src="@mipmap/activity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/likes_count"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/card_view_image"
+            android:layout_toRightOf="@id/step_icon"
+            android:textColor="@color/turquoise"
+            android:textSize="12sp"
+            android:text="159 likes"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

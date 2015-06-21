@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip"
+    android:layout_below="@+id/header"
+    android:background="#1C2428"
+
+    >
+    <!--  Email Label -->
+    <TextView android:layout_width="fill_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="Email"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dip"
+
+        android:layout_marginBottom="20dip"
+        android:singleLine="true"
+        android:id="@+id/edtEmail" />
+    <!--  Password Label -->
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="Password"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="5dip"
+        android:singleLine="true"
+        android:password="true"
+        android:id="@+id/edtPass" />
+    <!-- Login button -->
+    <Button android:id="@+id/btnLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/turquoise"
+        android:layout_marginTop="10dip"
+        android:text="Login"/>
+    <com.facebook.widget.LoginButton
+        android:id="@+id/authButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:login_text="@string/facebook_login_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        />
+    <!-- Link to Registration Screen -->
+    <TextView android:id="@+id/link_to_register"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dip"
+        android:layout_marginBottom="40dip"
+        android:text="New to Pincture? Register here"
+        android:gravity="center"
+        android:textSize="20dip"
+        android:textColor="#0b84aa"/>
+</LinearLayout>
