@@ -98,7 +98,7 @@ public class NewsFeedFragment extends Fragment {
     public void onResume() {
         super.onResume();
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar)getActivity().findViewById(R.id.tool_bar);
-//        rlToolBarImages.setVisibility(View.VISIBLE);
+        rlToolBarImages.setVisibility(View.VISIBLE);
 //        String s = "";
     }
 

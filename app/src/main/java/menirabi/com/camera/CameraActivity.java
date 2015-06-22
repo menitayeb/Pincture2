@@ -20,6 +20,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceView;
@@ -45,12 +47,15 @@ import menirabi.com.doggydogapp.R;
 
 public class CameraActivity extends Activity {
     private static final String TAG = "CameraActivity";
+    public static final int HANDLER_DIALOG_CANCEL = 32;
+    public static final int HANDLER_DIALOG_SAVE = 33;
     Preview preview;
     Camera camera;
     Activity act;
     Context ctx;
     Dialog dialog;
     CustomDialog cdd;
+    private byte[] pictureData;
     Bitmap imageDecode;
     Button buttonClick1;
     Button buttonClick2;
@@ -59,6 +64,20 @@ public class CameraActivity extends Activity {
     String def = "defaullt";
     private int barksType = 0;
     Context context;
+    public Handler mHandler = new Handler(){
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.what){
+                case HANDLER_DIALOG_SAVE:
+                    new SaveImageTask().execute(pictureData);
+                    break;
+                case HANDLER_DIALOG_CANCEL:
+                    break;
+            }
+        }
+    };
+
     private final ShutterCallback shutterCallback = new ShutterCallback() {
         public void onShutter() {
             AudioManager mgr = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -324,17 +343,18 @@ public class CameraActivity extends Activity {
 
     PictureCallback jpegCallback = new PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
-            new SaveImageTask().execute(data);
-
+            //new SaveImageTask().execute(data);
+            pictureData = data;
 //            Drawable image = new BitmapDrawable(BitmapFactory.decodeByteArray(data, 0, data.length));
             try{
                 imageDecode = BitmapFactory.decodeByteArray(data, 0, data.length);
                 imageDecode = Bitmap.createScaledBitmap(imageDecode,800,800,false);
                 cdd = new CustomDialog(CameraActivity.this, imageDecode);
+                cdd.setHandler(mHandler);
                 cdd.show();
             }
             catch (OutOfMemoryError E){
-                Toast.makeText(getBaseContext(), "OutOfMemory, still working on it.." , Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Out Of Memory, still working on it.." , Toast.LENGTH_LONG).show();
             }
 
            // findViewById(R.id.previewImage).setVisibility(View.VISIBLE);

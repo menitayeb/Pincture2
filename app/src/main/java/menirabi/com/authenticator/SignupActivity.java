@@ -10,11 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.facebook.widget.LoginButton;
-
-import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import menirabi.com.activities.MainActivity;
 import menirabi.com.doggydogapp.R;
@@ -23,6 +21,7 @@ import menirabi.com.doggydogapp.R;
 public class SignupActivity extends ActionBarActivity {
     public static final String URL = "";
     private SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,18 +33,71 @@ public class SignupActivity extends ActionBarActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tvEmail = ((EditText) findViewById(R.id.edtFullName)).getText().toString();
-                String tvPass = ((EditText) findViewById(R.id.nickname)).getText().toString();
-                new AsyncCaller().execute(URL, tvEmail, tvPass);
+                boolean ready = true;
+                EditText edtEmail = ((EditText)findViewById(R.id.edtEmail1));
+                final String email = edtEmail.getText().toString();
+                if (!isValidEmail(email)) {
+                    edtEmail.setError("Invalid Email");
+                    ready = false;
+                }
+
+                EditText edtBirth_year = ((EditText)findViewById(R.id.birth_year));
+
+                final String birth_year = edtBirth_year.getText().toString();
+                if (!isValidBirthyear(birth_year)) {
+                    edtBirth_year.setError("From 1900 to 2010");
+                    ready = false;
+                }
+
+//                EditText edtPassword = ((EditText)findViewById(R.id.edtPassword));
+//                final String pass = edtPassword.getText().toString();
+//                if (!isValidPassword(pass)) {
+//                    edtPassword.setError("Invalid Password");
+//                }
+                if (ready) {
+                    String tvEmail = ((EditText) findViewById(R.id.edtFullName)).getText().toString();
+                    String tvPass = ((EditText) findViewById(R.id.nickname)).getText().toString();
+                    new AsyncCaller().execute(URL, tvEmail, tvPass);
+                }
             }
         });
 
+
+
+
+    }
+
+    // validating birth year
+    private boolean isValidBirthyear(String pass) {
+        int i = Integer.parseInt(pass);
+        if (i>1899 && i<2011){
+            return true;
+        }
+        return false;
     }
 
 
+    // validating password with retype password
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() > 6) {
+            return true;
+        }
+        return false;
+    }
 
-    private class AsyncCaller extends AsyncTask<String, Void, String[]>
-    {
+
+    // validating email id
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+
+    private class AsyncCaller extends AsyncTask<String, Void, String[]> {
         ProgressDialog pdLoading = new ProgressDialog(SignupActivity.this);
 
         @Override
@@ -57,17 +109,18 @@ public class SignupActivity extends ActionBarActivity {
             pdLoading.show();
 
         }
+
         @Override
         protected String[] doInBackground(String... params) {
             //String content = HttpManager.getData(params[0],"username", "password");
-            String content[] = {"Meni","Tayeb"};
+            String content[] = {"Meni", "Tayeb"};
             return content;
         }
 
         @Override
         protected void onPostExecute(final String[] result) {
             super.onPostExecute(result);
-            Intent mainIntent = new Intent(SignupActivity.this,MainActivity.class);
+            Intent mainIntent = new Intent(SignupActivity.this, MainActivity.class);
             prefs.edit().putString("user", result[0]).commit();
             prefs.edit().putString("pass", result[1]).commit();
             prefs.edit().putBoolean(getString(R.string.isLogged), true).commit();
@@ -79,10 +132,6 @@ public class SignupActivity extends ActionBarActivity {
         }
 
     }
-
-
-
-
 
 
     @Override
@@ -106,9 +155,10 @@ public class SignupActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onBackPressed() {
-        Intent setIntent = new Intent(SignupActivity.this,LoginActivity.class);
+        Intent setIntent = new Intent(SignupActivity.this, LoginActivity.class);
         startActivity(setIntent);
         SignupActivity.this.finish();
     }

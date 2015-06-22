@@ -5,9 +5,13 @@ import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
+import menirabi.com.camera.CameraActivity;
 
 /**
  * Created by Oren on 21/06/2015.
@@ -15,6 +19,7 @@ import android.widget.Button;
 public class CustomDialog extends Dialog implements
         android.view.View.OnClickListener {
     public Bitmap image;
+    private Handler mHandler;
     public Activity c;
     public Dialog d;
     public Button yes, no;
@@ -24,6 +29,10 @@ public class CustomDialog extends Dialog implements
         // TODO Auto-generated constructor stub
         this.image = image;
         this.c = a;
+    }
+
+    public void setHandler(Handler handler){
+        this.mHandler = handler;
     }
 
     @Override
@@ -42,17 +51,23 @@ public class CustomDialog extends Dialog implements
 
     @Override
     public void onClick(View v) {
+        Message msg = new Message();
         switch (v.getId()) {
             case R.id.btn_yes:
+                msg.what = CameraActivity.HANDLER_DIALOG_SAVE;
+                mHandler.sendMessage(msg);
                 //c.finish();
                 dismiss();
                 break;
+
             case R.id.btn_no:
+                msg.what = CameraActivity.HANDLER_DIALOG_CANCEL;
+                mHandler.sendMessage(msg);
                 dismiss();
                 break;
+
             default:
                 break;
         }
-        dismiss();
     }
 }

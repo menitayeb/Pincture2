@@ -12,24 +12,21 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.content.SharedPreferences;
 import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import menirabi.com.doggydogapp.R;
 import menirabi.com.adapters.SampleFragmentPagerAdapter;
+import menirabi.com.doggydogapp.R;
 import menirabi.com.doggydogapp.SlidingTabLayout;
-import menirabi.com.doggydogapp.UILApplication;
 
 //import android.app.Fragment;
 
@@ -51,7 +48,7 @@ public class SlidesFragment extends Fragment {
     private SharedPreferences sp;
     private String userCoverPath;
     public static final String TAG = "SlidesFragment";
-
+    ViewPager viewPager;
     private Toolbar toolbar;
     private RelativeLayout rlImageCircle;
     TextView tvProfileName;
@@ -133,7 +130,7 @@ public class SlidesFragment extends Fragment {
         rlImageCircle.setVisibility(View.VISIBLE);
         CircleImageView iv = (CircleImageView) getActivity().findViewById(R.id.myProfileImage);
         iv.setImageResource(R.drawable.third_image);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager() ,
                 getActivity()));
         viewPager.setOffscreenPageLimit(4);
@@ -167,6 +164,8 @@ public class SlidesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        viewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager(),
+                getActivity()));
         if(userCoverPath!=null){
             File f = new File(userCoverPath+"/profile_cover.jpg");
             Bitmap bmp = BitmapFactory.decodeFile(f.getAbsolutePath());

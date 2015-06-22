@@ -73,9 +73,6 @@
             android:singleLine="true"
             android:id="@+id/birth_year" />
 
-
-
-
         <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
@@ -85,6 +82,7 @@
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:singleLine="true"
+            android:inputType="textEmailAddress"
             android:id="@+id/edtEmail1" />
 
 
