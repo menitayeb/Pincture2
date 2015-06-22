@@ -58,9 +58,9 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         } else {
             tag = ImageGridFragment.class.getSimpleName();
             Constants.setImageArray();
-            if (fragmentTwo == null) {
+           // if (fragmentTwo == null) {
                 fragmentTwo = new ImageGridFragment();
-            }
+           // }
             fr = fragmentTwo;
             args.putInt(FRAGMENT_INDEX, position);
         }

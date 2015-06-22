@@ -48,7 +48,9 @@ public class SlidesFragment extends Fragment {
     private SharedPreferences sp;
     private String userCoverPath;
     public static final String TAG = "SlidesFragment";
-    ViewPager viewPager;
+
+    private SampleFragmentPagerAdapter a;
+    private ViewPager viewPager;
     private Toolbar toolbar;
     private RelativeLayout rlImageCircle;
     TextView tvProfileName;
@@ -131,8 +133,9 @@ public class SlidesFragment extends Fragment {
         CircleImageView iv = (CircleImageView) getActivity().findViewById(R.id.myProfileImage);
         iv.setImageResource(R.drawable.third_image);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager() ,
-                getActivity()));
+        a= new SampleFragmentPagerAdapter(getChildFragmentManager() ,
+                getActivity());
+        viewPager.setAdapter(a);
         viewPager.setOffscreenPageLimit(4);
 
 
@@ -164,6 +167,11 @@ public class SlidesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+//        if (a!=null) {
+//            a.notifyDataSetChanged();
+//        }
+//        viewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager(),
+//                getActivity()));
         if(userCoverPath!=null){
             File f = new File(userCoverPath+"/profile_cover.jpg");
             Bitmap bmp = BitmapFactory.decodeFile(f.getAbsolutePath());

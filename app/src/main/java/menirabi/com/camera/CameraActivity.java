@@ -264,7 +264,7 @@ public class CameraActivity extends Activity {
 
                 camera.setParameters(params);
                 camera.takePicture(shutterCallback, rawCallback, jpegCallback);
-
+                //Constants.setImageArray();
                // dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
 
                // dialog.setContentView(R.layout.custom_dialog);
@@ -348,7 +348,7 @@ public class CameraActivity extends Activity {
 //            Drawable image = new BitmapDrawable(BitmapFactory.decodeByteArray(data, 0, data.length));
             try{
                 imageDecode = BitmapFactory.decodeByteArray(data, 0, data.length);
-                imageDecode = Bitmap.createScaledBitmap(imageDecode,800,800,false);
+                imageDecode = Bitmap.createScaledBitmap(imageDecode, 800, 800, false);
                 cdd = new CustomDialog(CameraActivity.this, imageDecode);
                 cdd.setHandler(mHandler);
                 cdd.show();

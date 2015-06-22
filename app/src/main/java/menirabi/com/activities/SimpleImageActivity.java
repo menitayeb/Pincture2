@@ -31,9 +31,9 @@ public class SimpleImageActivity extends FragmentActivity {
                 tag = ImageGridFragment.class.getSimpleName();
                 fr = getSupportFragmentManager().findFragmentByTag(tag);
                 Constants.setImageArray();
-                if (fr == null) {
+//                if (fr == null) {
                     fr = new ImageGridFragment();
-                }
+//                }
                 titleRes = R.string.ac_name_image_grid;
                 break;
             case ImagePagerFragment.INDEX:
