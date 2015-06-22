@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
-import android.support.v7.widget.Toolbar.LayoutParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,24 +118,22 @@ public class NewsFeedFragment extends Fragment {
 
     private void initializeData(){
         persons = new ArrayList<>();
-        persons.add(new NewsFeedData("Emma Wilson", "23 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lavery Maiss", "25 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
-        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image));
+        persons.add(new NewsFeedData("Emma Wilson", "23 years old", R.drawable.third_image, R.drawable.abca));
+        persons.add(new NewsFeedData("Lavery Maiss", "25 years old", R.drawable.third_image, R.drawable.abcb));
+        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.abcc,R.drawable.abcc));
+        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.second_image,R.drawable.abcf));
+        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image,R.drawable.abch));
+        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.abca,R.drawable.abci));
+        persons.add(new NewsFeedData("Lillie Watts", "35 years old", R.drawable.third_image,R.drawable.abcj));
 
 
     }
 
     private void initializeAdapter(){
         CardViewAdapter adapter = new CardViewAdapter(persons);
+        rv.getRecycledViewPool().setMaxRecycledViews(60,60);
         rv.setAdapter(adapter);
+
     }
 
     @Override

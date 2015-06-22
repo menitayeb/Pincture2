@@ -7,11 +7,13 @@ public class NewsFeedData {
     String name;
     String age;
     int photoId;
+    int coverId;
 
-    public NewsFeedData(String name, String age, int photoId) {
+    public NewsFeedData(String name, String age, int photoId, int coverId) {
         this.name = name;
         this.age = age;
         this.photoId = photoId;
+        this.coverId = coverId;
     }
 
     public String getName() {
@@ -24,5 +26,9 @@ public class NewsFeedData {
 
     public int getPhotoId() {
         return photoId;
+    }
+
+    public int getCoverId() {
+        return coverId;
     }
 }

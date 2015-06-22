@@ -8,10 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
@@ -27,17 +24,13 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -47,7 +40,6 @@ import java.io.IOException;
 import java.util.List;
 
 import menirabi.com.adapters.CustomAdapter;
-import menirabi.com.authenticator.LoginActivity;
 import menirabi.com.doggydogapp.CustomDialog;
 import menirabi.com.doggydogapp.R;
 
@@ -58,6 +50,8 @@ public class CameraActivity extends Activity {
     Activity act;
     Context ctx;
     Dialog dialog;
+    CustomDialog cdd;
+    Bitmap imageDecode;
     Button buttonClick1;
     Button buttonClick2;
     Button buttonClick3;
@@ -121,7 +115,21 @@ public class CameraActivity extends Activity {
 //                        Toast.makeText(getApplicationContext(),"this is default", Toast.LENGTH_LONG).show();
                         break;
                 }
-                mp.seekTo(2000);
+
+                CountDownTimer cntr_aCounter = new CountDownTimer(600, 100) {
+                    public void onTick(long millisUntilFinished) {
+
+                        mp.start();
+                    }
+
+                    public void onFinish() {
+                        //code fire after finish
+                        mp.stop();
+                    }
+                };cntr_aCounter.start();
+
+
+
                 mp.start();
 
             }
@@ -241,8 +249,8 @@ public class CameraActivity extends Activity {
                // dialog = new Dialog(this,android.R.style.Theme_Translucent_NoTitleBar);
 
                // dialog.setContentView(R.layout.custom_dialog);
-                CustomDialog cdd = new CustomDialog(CameraActivity.this);
-                cdd.show();
+//                CustomDialog cdd = new CustomDialog(CameraActivity.this);
+//                cdd.show();
                 //findViewById(R.id.previewImage).setVisibility(View.VISIBLE);
                 //findViewById(R.id.btnCancle).setVisibility(View.VISIBLE);
                 //findViewById(R.id.btnSave).setVisibility(View.VISIBLE);
@@ -319,12 +327,16 @@ public class CameraActivity extends Activity {
             new SaveImageTask().execute(data);
 
 //            Drawable image = new BitmapDrawable(BitmapFactory.decodeByteArray(data, 0, data.length));
-            Bitmap image = BitmapFactory.decodeByteArray(data, 0, data.length);
-            image = Bitmap.createScaledBitmap(image,800,800,false);
-            CustomDialog cdd = new CustomDialog(CameraActivity.this);
-            cdd.show();
-            View v = findViewById(R.id.previewImageDialog);
-            v.setBackground(new BitmapDrawable(getResources(),image));
+            try{
+                imageDecode = BitmapFactory.decodeByteArray(data, 0, data.length);
+                imageDecode = Bitmap.createScaledBitmap(imageDecode,800,800,false);
+                cdd = new CustomDialog(CameraActivity.this, imageDecode);
+                cdd.show();
+            }
+            catch (OutOfMemoryError E){
+                Toast.makeText(getBaseContext(), "OutOfMemory, still working on it.." , Toast.LENGTH_LONG).show();
+            }
+
            // findViewById(R.id.previewImage).setVisibility(View.VISIBLE);
 
             resetCam();

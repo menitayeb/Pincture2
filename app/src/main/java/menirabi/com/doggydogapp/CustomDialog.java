@@ -2,6 +2,8 @@ package menirabi.com.doggydogapp;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,14 +14,15 @@ import android.widget.Button;
  */
 public class CustomDialog extends Dialog implements
         android.view.View.OnClickListener {
-
+    public Bitmap image;
     public Activity c;
     public Dialog d;
     public Button yes, no;
 
-    public CustomDialog(Activity a) {
+    public CustomDialog(Activity a, Bitmap image) {
         super(a);
         // TODO Auto-generated constructor stub
+        this.image = image;
         this.c = a;
     }
 
@@ -32,6 +35,8 @@ public class CustomDialog extends Dialog implements
         no = (Button) findViewById(R.id.btn_no);
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
+        View v = findViewById(R.id.previewImageDialog);
+        v.setBackground(new BitmapDrawable(getContext().getResources(), image));
 
     }
 

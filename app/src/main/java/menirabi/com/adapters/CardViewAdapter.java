@@ -7,21 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
+
 import menirabi.com.doggydogapp.NewsFeedData;
 import menirabi.com.doggydogapp.R;
 
 /**
  * Created by Oren on 23/05/2015.
  */
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.List;
 
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.PersonViewHolder> {
 
@@ -31,6 +25,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.Person
         TextView personName;
         TextView personAge;
         ImageView personPhoto;
+        ImageView card_view_image;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -38,7 +33,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.Person
             personName = (TextView)itemView.findViewById(R.id.person_name);
             personAge = (TextView)itemView.findViewById(R.id.dog_name);
             personPhoto = (ImageView)itemView.findViewById(R.id.profile_image);
-
+            card_view_image = (ImageView)itemView.findViewById(R.id.card_view_image);
         }
     }
 
@@ -65,6 +60,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.Person
         personViewHolder.personName.setText(persons.get(i).getName());
         personViewHolder.personAge.setText(persons.get(i).getAge());
         personViewHolder.personPhoto.setImageResource(persons.get(i).getPhotoId());
+        personViewHolder.card_view_image.setImageResource(persons.get(i).getCoverId());
     }
 
     @Override
