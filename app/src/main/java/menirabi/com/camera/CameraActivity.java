@@ -352,12 +352,13 @@ public class CameraActivity extends Activity {
 
             // Write to SD Card
             try {
-                File sdCard = Environment.getExternalStorageDirectory();
-                File dir = new File (sdCard.getAbsolutePath() + "/PincturePhothos");
-                dir.mkdirs();
+                File sdCard = new File(Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                        .getAbsolutePath()+"/PincturePhothos");
+                sdCard.mkdirs();
 
                 String fileName = String.format("%d.jpg", System.currentTimeMillis());
-                File outFile = new File(dir, fileName);
+                File outFile = new File(sdCard, fileName);
 
                 outStream = new FileOutputStream(outFile);
                 outStream.write(data[0]);

@@ -18,8 +18,6 @@ package menirabi.com.doggydogapp;
 import android.os.Environment;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public final class Constants {
     public static String[] IMAGESALREADY;
@@ -30,7 +28,7 @@ public final class Constants {
     public static void setImageArray(){
         int i;
         int k=0;
-        File sdCard = Environment.getExternalStorageDirectory();
+        File sdCard = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         String path = sdCard.getAbsolutePath() + "/PincturePhothos";
         File f = new File(path);
         if(f.isDirectory()) {
