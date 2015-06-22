@@ -349,7 +349,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
                 final BitmapFactory.Options options = new BitmapFactory.Options();
 
                 // Calculate inSampleSize
-                options.inSampleSize = calculateInSampleSize(options, 300, 180);
+                options.inSampleSize = calculateInSampleSize(options, 250, 140);
 
                 // Decode bitmap with inSampleSize set
                 options.inJustDecodeBounds = false;
