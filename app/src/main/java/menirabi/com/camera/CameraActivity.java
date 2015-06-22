@@ -348,10 +348,11 @@ public class CameraActivity extends Activity {
 //            Drawable image = new BitmapDrawable(BitmapFactory.decodeByteArray(data, 0, data.length));
             try{
                 imageDecode = BitmapFactory.decodeByteArray(data, 0, data.length);
-                imageDecode = Bitmap.createScaledBitmap(imageDecode,800,800,false);
+                imageDecode = Bitmap.createScaledBitmap(imageDecode, 800, 800, false);
                 cdd = new CustomDialog(CameraActivity.this, imageDecode);
                 cdd.setHandler(mHandler);
                 cdd.show();
+                imageDecode = null;
             }
             catch (OutOfMemoryError E){
                 Toast.makeText(getBaseContext(), "Out Of Memory, still working on it.." , Toast.LENGTH_LONG).show();

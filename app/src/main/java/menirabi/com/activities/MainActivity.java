@@ -5,11 +5,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,18 +26,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import menirabi.com.adapters.MyAdapter;
 import menirabi.com.authenticator.LoginActivity;
-import menirabi.com.camera.AndroidVideoCaptureExample;
 import menirabi.com.camera.CameraActivity;
 import menirabi.com.doggydogapp.Constants;
 import menirabi.com.doggydogapp.R;
@@ -367,6 +359,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
 
                 SlidesFragment fragment = (SlidesFragment) getSupportFragmentManager().findFragmentByTag("menirabi.com.fragments.SlidesFragment");
                 fragment.setCoverImage(yourSelectedImage);
+                yourSelectedImage = null;
             }
         }
     }
