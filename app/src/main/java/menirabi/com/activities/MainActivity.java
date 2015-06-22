@@ -359,7 +359,6 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
 
                 SlidesFragment fragment = (SlidesFragment) getSupportFragmentManager().findFragmentByTag("menirabi.com.fragments.SlidesFragment");
                 fragment.setCoverImage(yourSelectedImage);
-                yourSelectedImage = null;
             }
         }
     }

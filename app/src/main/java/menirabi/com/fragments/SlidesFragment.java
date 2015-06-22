@@ -102,8 +102,6 @@ public class SlidesFragment extends Fragment {
             Bitmap bmp = BitmapFactory.decodeFile(f.getAbsolutePath());
             Drawable drawable = new BitmapDrawable(getResources(), bmp);
             toolbar.setBackground(drawable);
-            drawable = null;
-            bmp = null;
         }
         else{
             toolbar.setBackgroundResource(R.mipmap.coverr);
@@ -166,15 +164,11 @@ public class SlidesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        viewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager(),
-//                getActivity()));
         if(userCoverPath!=null){
             File f = new File(userCoverPath+"/profile_cover.jpg");
             Bitmap bmp = BitmapFactory.decodeFile(f.getAbsolutePath());
             Drawable drawable = new BitmapDrawable(getResources(), bmp);
             toolbar.setBackground(drawable);
-            drawable = null;
-            bmp = null;
         }
         else{
             toolbar.setBackgroundResource(R.mipmap.coverr);
