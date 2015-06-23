@@ -9,7 +9,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import menirabi.com.camera.CameraActivity;
 
@@ -22,7 +23,7 @@ public class CustomDialog extends Dialog implements
     private Handler mHandler;
     public Activity c;
     public Dialog d;
-    public Button yes, no;
+    public ImageView yes, no;
 
     public CustomDialog(Activity a, Bitmap image) {
         super(a);
@@ -40,8 +41,8 @@ public class CustomDialog extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_dialog);
-        yes = (Button) findViewById(R.id.btn_yes);
-        no = (Button) findViewById(R.id.btn_no);
+        yes = (ImageButton) findViewById(R.id.btn_yes);
+        no = (ImageButton) findViewById(R.id.btn_no);
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
         View v = findViewById(R.id.previewImageDialog);
