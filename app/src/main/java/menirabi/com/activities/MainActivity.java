@@ -1,11 +1,13 @@
 package menirabi.com.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +80,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
     public static String Tag3 = "third";
     public static String Tag4 = "fourth";
     public static String Tag5 = "fifth";
+    private ProgressDialog dialog;
 
 
     @Override
@@ -88,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
     /* Assinging the toolbar object ot the view
     and setting the the Action bar to our toolbar
      */
-
+        dialog = new ProgressDialog(MainActivity.this);
 //        SystemBarTintManager tintManager = new SystemBarTintManager(this);
 //        // enable status bar tint
 //        tintManager.setStatusBarTintEnabled(true);
@@ -176,42 +179,13 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
                 new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Drawer.closeDrawers();
-                        Fragment fragment;
-                        switch (position) {
-                            case 1:
-                                fragment = SlidesFragment.newInstance();
-                                break;
-                            case 2:
-                                fragment = NewsFeedFragment.newInstance();
-                                break;
-                            case 3:
-                            case 4:
-                            case 5:
-                                fragment = BlankFragment.newInstance();
-                                break;
-                            default:
-                                fragment = SlidesFragment.newInstance();
-                                break;
-                        }
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        if (fragmentManager.findFragmentByTag(fragment.getClass().getName()) != null) {
-                            String f = fragment.getClass().getName();
-                            currentFragment = fragmentManager.findFragmentByTag(fragment.getClass().getName());
-                            fragmentList.add(currentFragment);
-                            fragmentTransaction.replace(R.id.container, currentFragment, fragment.getClass().getName());
-                        } else {
-                            String f = fragment.getClass().getName();
-                            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            currentFragment = fragment;
-                            fragmentList.add(currentFragment);
-                            fragmentTransaction.add(R.id.container, currentFragment, fragment.getClass().getName());
-                        }
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
+                        new LongOperation().execute(position);
+
                     }
                 })
         );
+
+
 
 
         mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
@@ -290,6 +264,75 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private class LongOperation extends AsyncTask<Integer, Void, Integer> {
+        Fragment fragment;
+
+        FragmentTransaction fragmentTransaction;
+        @Override
+        protected Integer doInBackground(Integer... params) {
+            switch (params[0]) {
+                case 1:
+                    fragment = SlidesFragment.newInstance();
+                    break;
+                case 2:
+                    fragment = NewsFeedFragment.newInstance();
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    fragment = BlankFragment.newInstance();
+                    break;
+                default:
+                    fragment = SlidesFragment.newInstance();
+                    break;
+            }
+            fragmentTransaction = fragmentManager.beginTransaction();
+            if (fragmentManager.findFragmentByTag(fragment.getClass().getName()) != null) {
+                String f = fragment.getClass().getName();
+                currentFragment = fragmentManager.findFragmentByTag(fragment.getClass().getName());
+                fragmentList.add(currentFragment);
+                fragmentTransaction.replace(R.id.container, currentFragment, fragment.getClass().getName());
+            } else {
+                String f = fragment.getClass().getName();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                currentFragment = fragment;
+                fragmentList.add(currentFragment);
+                fragmentTransaction.add(R.id.container, currentFragment, fragment.getClass().getName());
+            }
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+            return 0;
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                }
+            }, 1400);
+
+
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Drawer.closeDrawers();
+            dialog.setMessage("Loading...");
+            dialog.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
+
+
 
 
     @Override
