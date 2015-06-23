@@ -31,14 +31,14 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:layout_marginRight="-10dp"
-            android:background="@mipmap/highlight_off_black_48dp"
+            android:background="@mipmap/ic_ic_highlight_off_black"
             android:layout_below="@id/previewImage"
             />
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/check_circle_black_48dp"
+            android:background="@mipmap/ic_ic_check_circle_black"
             android:layout_below="@id/previewImage"
             android:layout_toRightOf="@id/btnCancle"
             android:visibility="gone"

@@ -67,6 +67,8 @@ public class SignupActivity extends ActionBarActivity {
 
     }
 
+
+
     // validating birth year
     private boolean isValidBirthyear(String pass) {
         Integer i;

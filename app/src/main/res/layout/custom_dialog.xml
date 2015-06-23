@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/bg_color_transparent_dialog"
+    android:background="@color/bg_color"
     android:orientation="vertical"
     >
 
@@ -10,7 +10,7 @@
         android:id="@+id/previewImageDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/bg_color_transparent_dialog"
+        android:background="@color/bg_color"
         android:rotation="90"
         android:layout_gravity="center"
         android:layout_margin="10dp"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/highlight_off_black_48dp"
+            android:background="@mipmap/ic_ic_highlight_off_black"
             android:clickable="true"
              />
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:background="@mipmap/check_circle_black_48dp"
+            android:background="@mipmap/ic_ic_check_circle_black"
             android:clickable="true"
             />
     </LinearLayout>
