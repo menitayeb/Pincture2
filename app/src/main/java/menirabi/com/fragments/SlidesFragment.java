@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -53,6 +54,7 @@ public class SlidesFragment extends Fragment {
     private ViewPager viewPager;
     private Toolbar toolbar;
     private RelativeLayout rlImageCircle;
+    SlidingTabLayout slidingTabLayout;
     TextView tvProfileName;
 
 
@@ -125,6 +127,9 @@ public class SlidesFragment extends Fragment {
             }
         });
 
+        // Give the SlidingTabLayout the ViewPager
+        slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+
         rlImageCircle = (RelativeLayout)getActivity().findViewById(R.id.rlMyprofileImage);
         tvProfileName = (TextView) getActivity().findViewById(R.id.profile_name);
         tvProfileName.setVisibility(View.VISIBLE);
@@ -133,26 +138,7 @@ public class SlidesFragment extends Fragment {
         CircleImageView iv = (CircleImageView) getActivity().findViewById(R.id.myProfileImage);
         iv.setImageResource(R.drawable.third_image);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        a= new SampleFragmentPagerAdapter(getChildFragmentManager() ,
-                getActivity());
-        viewPager.setAdapter(a);
-        viewPager.setOffscreenPageLimit(4);
-
-
-        // Give the SlidingTabLayout the ViewPager
-        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
-
-        slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
-
-        // Center the tabs in the layout
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.turquoise);
-            }
-        });
-        slidingTabLayout.setViewPager(viewPager);
+        LongOperation().execute();
         return view;
 
     }
@@ -255,6 +241,41 @@ public class SlidesFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         public void onSlideFragmentInteraction(String contain);
+    }
+
+
+    private class LongOperation extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            a= new SampleFragmentPagerAdapter(getChildFragmentManager() ,
+                    getActivity());
+            viewPager.setAdapter(a);
+            viewPager.setOffscreenPageLimit(4);
+            slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
+
+            // Center the tabs in the layout
+            slidingTabLayout.setDistributeEvenly(true);
+            slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+                @Override
+                public int getIndicatorColor(int position) {
+                    return getResources().getColor(R.color.turquoise);
+                }
+            });
+            slidingTabLayout.setViewPager(viewPager);
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
 
 }
