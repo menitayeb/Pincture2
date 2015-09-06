@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:windowActionBarOverlay">true</item>
+
+    </style>
+
+
+    <style name="Mashu" parent="AppTheme" >
+        <item name="android:textColorPrimary">@color/white_color</item>
+        <item name="android:textColorSecondary">@color/white_color</item>
+        <item name="actionMenuTextColor">@color/white_color</item>
+        <item name="android:displayOptions">showHome|useLogo</item>
+    </style>
+
+    <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_dris</item>
+        <item name="android:minWidth">10dip</item>
+        <item name="android:maxWidth">10dip</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">10dip</item>
+
+    </style>
+
+
+    <!-- camera spinner dropdownlist styling -->
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
+    </style>
+
+</resources>

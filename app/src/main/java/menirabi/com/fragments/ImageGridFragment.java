@@ -39,8 +39,6 @@ public class ImageGridFragment extends AbsListViewBaseFragment {
         super.onCreate(savedInstanceState);
         options = new DisplayImageOptions.Builder()
        //         .showImageOnLoading(R.drawable.ic_stub)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();

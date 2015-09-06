@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white_color">#FFFFFF</color>
+    <color name="turquoise">#57bfb6</color>
+    <color name="bg_color">#1C2428</color>
+    <color name="bg_color_transparent">#A61C2428</color>
+    <color name="bg_color_transparent_dialog">#4D1C2428</color>
+    <color name="card_color">#293035</color>
+    <color name="card_frame_color">#181D21</color>
+    <color name="primaryDark">#000008</color>
+</resources>

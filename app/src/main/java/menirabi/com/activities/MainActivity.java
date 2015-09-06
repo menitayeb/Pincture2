@@ -178,7 +178,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
                     @Override
                     public void onItemClick(View view, int position) {
                         Fragment fragment;
-                        Drawer.closeDrawers();
+
                         switch (position) {
                             case 1:
                                 fragment = SlidesFragment.newInstance();
@@ -210,6 +210,7 @@ public class MainActivity extends ActionBarActivity implements SlidesFragment.On
                         }
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
+                        Drawer.closeDrawers();
 
                     }
                 })

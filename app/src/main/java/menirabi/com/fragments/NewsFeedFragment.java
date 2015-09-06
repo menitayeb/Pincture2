@@ -1,6 +1,7 @@
 package menirabi.com.fragments;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -88,8 +89,8 @@ public class NewsFeedFragment extends Fragment {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
-        initializeData();
-        initializeAdapter();
+        new LongOperation().execute();
+
         // Inflate the layout for this fragment
         return rootView;
     }
@@ -131,7 +132,7 @@ public class NewsFeedFragment extends Fragment {
 
     private void initializeAdapter(){
         CardViewAdapter adapter = new CardViewAdapter(persons);
-        rv.getRecycledViewPool().setMaxRecycledViews(60,60);
+       // rv.getRecycledViewPool().setMaxRecycledViews(60,60);
         rv.setAdapter(adapter);
 
     }
@@ -165,6 +166,30 @@ public class NewsFeedFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         public void onNewsFragmentInteraction(String content);
+    }
+
+
+    private class LongOperation extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            initializeData();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            initializeAdapter();
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
 
 }

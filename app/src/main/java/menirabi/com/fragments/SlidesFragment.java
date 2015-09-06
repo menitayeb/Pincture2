@@ -138,7 +138,7 @@ public class SlidesFragment extends Fragment {
         CircleImageView iv = (CircleImageView) getActivity().findViewById(R.id.myProfileImage);
         iv.setImageResource(R.drawable.third_image);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        LongOperation().execute();
+        new LongOperation().execute();
         return view;
 
     }
@@ -251,7 +251,7 @@ public class SlidesFragment extends Fragment {
             a= new SampleFragmentPagerAdapter(getChildFragmentManager() ,
                     getActivity());
             viewPager.setAdapter(a);
-            viewPager.setOffscreenPageLimit(4);
+            //viewPager.setOffscreenPageLimit(4);
             slidingTabLayout.setCustomTabView(R.layout.custom_tab, 0);
 
             // Center the tabs in the layout
@@ -263,6 +263,7 @@ public class SlidesFragment extends Fragment {
                 }
             });
             slidingTabLayout.setViewPager(viewPager);
+            return null;
         }
 
         @Override
