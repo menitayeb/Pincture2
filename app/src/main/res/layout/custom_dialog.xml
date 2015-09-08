@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:clickable="true"
-            android:background="@color/bg_color"
+            android:background="@drawable/bg_selector"
             android:src="@drawable/ic_highlight_off_black" />
 
         <ImageButton
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:clickable="true"
-            android:background="@color/bg_color"
+            android:background="@drawable/bg_selector"
             android:src="@drawable/ic_check_circle_black" />
     </LinearLayout>
 
